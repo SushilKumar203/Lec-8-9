@@ -1,0 +1,180 @@
+P-1) Write a program to print “good morning” if time is less than 12 else print “good after noon” if the time
+greater than 12 and less than 16 else print “good evening” if the time greater than 16 and less than 19 else
+“good night”. The user input should be a positive number and can not be greater than 24.
+#include <stdio.h>
+
+#include <stdio.h>
+#include <stdlib.h>
+int main() {
+    float time;
+
+    // Input time from user
+    printf("Enter time (in 24-hour format): ");
+    scanf("%f", &time);
+
+    // Check for valid time (between 0 and 24)
+    if (time < 0 || time > 24) {
+        printf("Please enter a valid time between 0 and 24.\n");
+    } else {
+        // Print greeting based on time
+        if (time < 12) {
+            printf("Good morning!\n");
+        } else if (time >= 12 && time < 16) {
+            printf("Good afternoon!\n");
+        } else if (time >= 16 && time < 19) {
+            printf("Good evening!\n");
+        } else {
+            printf("Good night!\n");
+        }
+    }
+
+    return 0;
+}
+
+
+
+P-2)P2: Calculate and print the surface area and volume for a box with dimensions (length, width, and height)
+entered by the user. [ Use float data type for all variables, Entered values should be a positive number]
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    float length, width, height;
+    float surfaceArea, volume;
+
+    // Input for length
+    printf("Enter length: ");
+    scanf("%f", &length);
+    
+    // Input for width
+    printf("Enter width: ");
+    scanf("%f", &width);
+    
+    // Input for height
+    printf("Enter height: ");
+    scanf("%f", &height);
+    
+    // Check for positive values
+    if (length < 0 || width < 0 || height < 0) {
+        printf("Please enter positive values for length, width, and height.\n");
+    } else {
+        // Calculate Surface Area
+        surfaceArea = (2 * length * width) + (2 * length * height) + (2 * height * width);
+        printf("Surface Area: %.2f\n", surfaceArea);
+        
+        // Calculate Volume
+        volume = length * width * height;
+        printf("Volume: %.2f\n", volume);
+    }
+
+    return 0;
+}
+
+P-3)P3: Take gross salary of an employee (e.g. 50000) as input and print net salary along with all deduction details
+as output. The Tax Rate may vary (No tax < 50000, 2.5% tax >= 50000 and less than 100000, 4.5% tax >=
+100000 and less than 300000, 5.5% tax >= 300000. Deduct medical insurance 1% for all the ranges. Provident
+Funds 2.5% for all. The user input should be a positive number
+
+#include <stdio.h>
+
+int main() {
+    float grossSalary, tax = 0.0, medicalInsurance, providentFund, netSalary;
+
+    // Input gross salary
+    printf("Enter gross salary of the employee: ");
+    scanf("%f", &grossSalary);
+
+    // Check if the gross salary is a positive number
+    if (grossSalary <= 0) {
+        printf("Please enter a positive number for gross salary.\n");
+    } else {
+        // Calculate tax based on gross salary
+        if (grossSalary < 50000) {
+            tax = 0;
+        } else if (grossSalary >= 50000 && grossSalary < 100000) {
+            tax = 0.025 * grossSalary; // 2.5% tax
+        } else if (grossSalary >= 100000 && grossSalary < 300000) {
+            tax = 0.045 * grossSalary; // 4.5% tax
+        } else if (grossSalary >= 300000) {
+            tax = 0.055 * grossSalary; // 5.5% tax
+        }
+
+        // Calculate medical insurance (1% for all ranges)
+        medicalInsurance = 0.01 * grossSalary;
+
+        // Calculate provident fund (2.5% for all ranges)
+        providentFund = 0.025 * grossSalary;
+
+        // Calculate net salary
+        netSalary = grossSalary - tax - medicalInsurance - providentFund;
+
+        // Output deduction details
+        printf("\nDeduction Details:\n");
+        printf("Gross Salary: %.2f\n", grossSalary);
+        printf("Tax Deducted: %.2f\n", tax);
+        printf("Medical Insurance Deducted: %.2f\n", medicalInsurance);
+        printf("Provident Fund Deducted: %.2f\n", providentFund);
+
+        // Output net salary
+        printf("Net Salary: %.2f\n", netSalary);
+    }
+
+    return 0;
+}
+
+P-4)P4: Write a program to make a calculator where the operator selection is dependent upon user input.
+Following are the requirements. Two inputs numeric. One selection for operation, output with respect to user
+selection. When selecting division operator handle ‘0’ in denominator. Operators (+,-,*,/)
+
+#include <stdio.h>
+
+int main() {
+    float num1, num2, result;
+    char operator;
+
+    // Input two numbers from the user
+    printf("Enter first number: ");
+    scanf("%f", &num1);
+    printf("Enter second number: ");
+    scanf("%f", &num2);
+
+    // Input operator from the user
+    printf("Enter an operator (+, -, *, /): ");
+    scanf(" %c", &operator);  // Space before %c to ignore newline character from previous input
+
+    // Perform the calculation based on the operator
+    switch (operator) {
+        case '+':
+            result = num1 + num2;
+            printf("Result: %.2f + %.2f = %.2f\n", num1, num2, result);
+            break;
+
+        case '-':
+            result = num1 - num2;
+            printf("Result: %.2f - %.2f = %.2f\n", num1, num2, result);
+            break;
+
+        case '*':
+            result = num1 * num2;
+            printf("Result: %.2f * %.2f = %.2f\n", num1, num2, result);
+            break;
+
+        case '/':
+            if (num2 != 0) {
+                result = num1 / num2;
+                printf("Result: %.2f / %.2f = %.2f\n", num1, num2, result);
+            } else {
+                printf("Error: Division by zero is not allowed.\n");
+            }
+            break;
+
+        default:
+            printf("Invalid operator. Please choose from +, -, *, or /.\n");
+            break;
+    }
+
+    return 0;
+}
+
+
